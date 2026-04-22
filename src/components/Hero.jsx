@@ -57,15 +57,15 @@ export default function Hero({ onOpenContact }) {
     "group relative isolate overflow-hidden rounded-full bg-gradient-to-l from-orange-400 via-orange-500 to-orange-600 px-7 py-3.5 font-semibold text-white shadow-[0_18px_55px_-18px_rgba(249,115,22,0.75)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_65px_-18px_rgba(249,115,22,0.85)] active:translate-y-0";
 
   const ghostBtn =
-    "rounded-full border border-white/25 bg-white/5 px-7 py-3.5 font-semibold text-white backdrop-blur-md transition-all duration-300 hover:border-white/45 hover:bg-white/10 active:scale-[0.98]";
+    "rounded-full border border-slate-200/95 bg-white/85 px-7 py-3.5 font-semibold text-slate-800 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-orange-200 hover:bg-white hover:text-slate-900 active:scale-[0.98]";
 
   return (
     <section
       id="hero"
       className="relative min-h-screen overflow-hidden hero-backdrop"
     >
-      {/* soft vignette */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.06),transparent_62%)]" />
+      {/* acento suave encima del fondo claro */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_-10%,rgba(251,146,60,0.11),transparent_52%)]" />
 
       <div className="relative max-w-7xl mx-auto px-4 md:px-6 pt-24 pb-16 min-h-screen flex items-center">
         <div className="grid grid-cols-1 lg:grid-cols-6 gap-10 lg:gap-14 items-center w-full">
@@ -76,14 +76,14 @@ export default function Hero({ onOpenContact }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.15 }}
           >
-            <h1 className="text-white text-3xl md:text-4xl lg:text-[2.65rem] font-extrabold leading-[1.12] tracking-tight">
+            <h1 className="text-3xl font-extrabold leading-[1.12] tracking-tight text-slate-900 md:text-4xl lg:text-[2.65rem]">
               {headlineStart}
               <span className="bg-gradient-to-l from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent">
                 {localeConfig.heroHighlight}
               </span>
               {headlineEnd}
             </h1>
-            <p className="mt-6 text-white/72 text-base md:text-lg leading-relaxed">
+            <p className="mt-6 text-base leading-relaxed text-slate-600 md:text-lg">
               {brand.heroDescription}
             </p>
 
@@ -103,7 +103,7 @@ export default function Hero({ onOpenContact }) {
                   <p className="bg-gradient-to-l from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-2xl md:text-3xl font-bold text-transparent">
                     {s.value}
                   </p>
-                  <p className="text-white/55 text-xs md:text-sm mt-1">{s.label}</p>
+                  <p className="mt-1 text-xs text-slate-500 md:text-sm">{s.label}</p>
                 </div>
               ))}
             </div>
@@ -116,13 +116,13 @@ export default function Hero({ onOpenContact }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.28 }}
           >
-            <p className="mb-4 text-sm md:text-base text-white/75 leading-relaxed text-right">
+            <p className="mb-4 text-right text-sm leading-relaxed text-slate-600 md:text-base">
               {localeConfig.hero.sliderHint}
             </p>
 
             <div
               ref={containerRef}
-              className="relative aspect-[16/10] w-full min-h-[min(82vw,620px)] cursor-ew-resize select-none overflow-hidden rounded-3xl ring-1 ring-white/12 shadow-[0_40px_120px_-55px_rgba(0,0,0,0.85)] touch-pan-x md:aspect-[16/9] lg:aspect-[2/1]"
+              className="relative aspect-[16/10] w-full min-h-[min(82vw,620px)] cursor-ew-resize select-none overflow-hidden rounded-3xl ring-1 ring-slate-900/10 shadow-[0_40px_100px_-48px_rgba(15,23,42,0.35)] touch-pan-x md:aspect-[16/9] lg:aspect-[2/1]"
               onMouseMove={handleMouseMove}
               onMouseUp={() => {
                 draggingRef.current = false;

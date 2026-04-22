@@ -41,10 +41,10 @@ export default function SplashScreen({ onComplete }) {
           exit={{ y: "-100vh" }}
           transition={{ duration: 1.2, ease: [0.65, 0, 0.35, 1] }}
         >
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.07),transparent_62%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(251,146,60,0.1),transparent_55%)]" />
           {/* Nombre de marca */}
           <motion.h1
-            className="bg-gradient-to-l from-white via-white to-orange-100 bg-clip-text text-center text-4xl font-extrabold tracking-tight text-transparent md:text-6xl lg:text-7xl"
+            className="text-center text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl lg:text-7xl"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -54,7 +54,7 @@ export default function SplashScreen({ onComplete }) {
 
           {/* Subtítulo */}
           <motion.p
-            className="mt-4 text-sm md:text-base font-medium tracking-wide text-white/72"
+            className="mt-4 text-sm font-medium tracking-wide text-slate-600 md:text-base"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -81,7 +81,7 @@ export default function SplashScreen({ onComplete }) {
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             >
-              <ChevronUp className="w-6 h-6 text-white/40" />
+              <ChevronUp className="h-6 w-6 text-slate-400" />
             </motion.div>
           </motion.div>
         </motion.div>

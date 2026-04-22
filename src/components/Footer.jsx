@@ -12,7 +12,7 @@ export default function Footer() {
   };
 
   return (
-    <footer id="contact" className="relative overflow-hidden py-16 text-white hero-backdrop md:py-20">
+    <footer id="contact" className="footer-surface relative overflow-hidden py-16 text-white md:py-20">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.055),transparent_62%)]" />
       <div className="relative max-w-7xl mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">

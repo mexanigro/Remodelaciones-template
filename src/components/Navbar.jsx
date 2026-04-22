@@ -24,10 +24,10 @@ export default function Navbar({ onOpenContact, splashDone }) {
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed left-0 right-0 top-0 z-50 border-b bg-white/90 backdrop-blur-xl transition-all duration-500 ${
         scrolled
-          ? "border-b border-black/5 bg-white/82 backdrop-blur-xl shadow-[0_18px_55px_-44px_rgba(15,23,42,0.35)]"
-          : "bg-transparent"
+          ? "border-slate-200/95 shadow-[0_18px_55px_-44px_rgba(15,23,42,0.14)]"
+          : "border-slate-200/70"
       }`}
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: splashDone ? 1 : 0, y: splashDone ? 0 : -20 }}
@@ -41,9 +41,7 @@ export default function Navbar({ onOpenContact, splashDone }) {
             e.preventDefault();
             scrollTo("#hero");
           }}
-          className={`font-bold text-lg tracking-wider ${
-            scrolled ? "text-slate-900" : "text-white"
-          }`}
+          className="text-lg font-bold tracking-wider text-slate-900"
         >
           {brand.shortName}
           <span className="bg-gradient-to-l from-orange-400 to-orange-600 bg-clip-text text-transparent">
@@ -61,9 +59,7 @@ export default function Navbar({ onOpenContact, splashDone }) {
                 e.preventDefault();
                 scrollTo(link.href);
               }}
-              className={`text-sm tracking-wide transition-colors hover:text-orange-500 ${
-                scrolled ? "text-slate-600" : "text-white/82"
-              }`}
+              className="text-sm tracking-wide text-slate-600 transition-colors hover:text-orange-500"
             >
               {link.label}
             </a>
@@ -79,7 +75,7 @@ export default function Navbar({ onOpenContact, splashDone }) {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className={`lg:hidden ${scrolled ? "text-slate-900" : "text-white"}`}
+          className="text-slate-900 lg:hidden"
         >
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
