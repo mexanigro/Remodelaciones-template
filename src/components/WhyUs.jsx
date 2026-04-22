@@ -45,7 +45,7 @@ export default function WhyUs() {
               {whyUsItems.map((item, i) => (
                 <motion.div
                   key={i}
-                  className="flex flex-row-reverse items-start gap-4 text-right"
+                  className="flex items-start gap-4 text-start"
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}

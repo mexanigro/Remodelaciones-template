@@ -61,7 +61,7 @@ export default function Portfolio() {
 
         {/* Filters */}
         <motion.div
-          className="flex gap-2 overflow-x-auto pb-4 mb-10 scrollbar-hide"
+          className="scrollbar-hide mb-10 flex max-w-full gap-2 overflow-x-auto overflow-y-hidden pb-4 [-webkit-overflow-scrolling:touch] overscroll-x-contain touch-pan-x"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -175,7 +175,7 @@ export default function Portfolio() {
                   {isRtl ? <ChevronLeft className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
                 </button>
                 {/* Dots */}
-                <div className="absolute bottom-3 right-1/2 translate-x-1/2 flex gap-2">
+                <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-2">
                   {selectedProject.images.map((_, i) => (
                     <button
                       key={i}

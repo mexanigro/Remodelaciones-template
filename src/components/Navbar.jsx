@@ -33,7 +33,7 @@ export default function Navbar({ onOpenContact, splashDone }) {
       animate={{ opacity: splashDone ? 1 : 0, y: splashDone ? 0 : -20 }}
       transition={{ duration: 0.6, delay: 0.3 }}
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 md:px-6">
         {/* Logo */}
         <a
           href="#hero"
@@ -41,7 +41,7 @@ export default function Navbar({ onOpenContact, splashDone }) {
             e.preventDefault();
             scrollTo("#hero");
           }}
-          className="text-lg font-bold tracking-wider text-slate-900"
+          className="min-w-0 flex-1 text-lg font-bold leading-snug tracking-wider text-slate-900 sm:flex-none"
         >
           {brand.shortName}
           <span className="bg-gradient-to-l from-orange-400 to-orange-600 bg-clip-text text-transparent">
@@ -74,8 +74,13 @@ export default function Navbar({ onOpenContact, splashDone }) {
 
         {/* Mobile hamburger */}
         <button
+          type="button"
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="text-slate-900 lg:hidden"
+          className="shrink-0 text-slate-900 lg:hidden"
+          aria-expanded={mobileOpen}
+          aria-label={
+            mobileOpen ? localeConfig.a11y.closeMenu : localeConfig.a11y.openMenu
+          }
         >
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>

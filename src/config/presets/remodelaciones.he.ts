@@ -1,11 +1,12 @@
 import type { NichePreset } from "@/types/site";
 
-export const remodelacionesPreset: NichePreset = {
+export const remodelacionesPresetHe: NichePreset = {
   brand: {
     name: "רנובה עסקים",
     shortName: "רנובה",
     tagline: "שיפוצים והקמות לעסקים",
-    heroHeadline: "אנחנו משפצים את העסק שלך או פותחים אותו מאפס",
+    heroHeadline:
+      "אנחנו משפצים את המקום שלך או פותחים את העסק שלך מאפס",
     heroDescription:
       "תכנון וביצוע מקצה לקצה לברים, בתי קפה, חנויות ומשרדים. העסק שלך מוכן לפעילות מהר יותר.",
     phone: "+972 50-555-0123",

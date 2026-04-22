@@ -9,9 +9,14 @@ export default function FloatingCTA({ onOpenContact }) {
     <>
       {/* Mobile: floating button bottom-right */}
       <motion.button
+        type="button"
         onClick={onOpenContact}
-        className="fixed bottom-6 z-40 md:hidden flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-l from-orange-400 via-orange-500 to-orange-600 text-white shadow-[0_22px_65px_-28px_rgba(249,115,22,0.85)] ring-4 ring-orange-400/25"
-        style={isRtl ? { left: "1.5rem" } : { right: "1.5rem" }}
+        className="fixed z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-l from-orange-400 via-orange-500 to-orange-600 text-white shadow-[0_22px_65px_-28px_rgba(249,115,22,0.85)] ring-4 ring-orange-400/25 md:hidden"
+        style={
+          isRtl
+            ? { left: "max(1rem, env(safe-area-inset-left, 0px))", bottom: "max(1.5rem, env(safe-area-inset-bottom, 0px))" }
+            : { right: "max(1rem, env(safe-area-inset-right, 0px))", bottom: "max(1.5rem, env(safe-area-inset-bottom, 0px))" }
+        }
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ delay: 2, type: "spring" }}
@@ -28,18 +33,19 @@ export default function FloatingCTA({ onOpenContact }) {
         animate={{ y: 0 }}
         transition={{ delay: 2, duration: 0.5 }}
       >
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div>
-            <p className="text-slate-900 font-semibold text-sm">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-semibold text-slate-900">
               {localeConfig.floatingCta.title}
             </p>
-            <p className="text-slate-600 text-xs mt-0.5">
+            <p className="mt-0.5 text-xs text-slate-600">
               {localeConfig.floatingCta.subtitle}
             </p>
           </div>
           <button
+            type="button"
             onClick={onOpenContact}
-            className="flex-shrink-0 rounded-full bg-gradient-to-l from-orange-400 via-orange-500 to-orange-600 px-6 py-2.5 text-sm font-semibold text-white shadow-[0_18px_45px_-22px_rgba(249,115,22,0.65)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_55px_-22px_rgba(249,115,22,0.78)] active:translate-y-0"
+            className="flex-shrink-0 self-start rounded-full bg-gradient-to-l from-orange-400 via-orange-500 to-orange-600 px-6 py-2.5 text-sm font-semibold text-white shadow-[0_18px_45px_-22px_rgba(249,115,22,0.65)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_55px_-22px_rgba(249,115,22,0.78)] active:translate-y-0 sm:self-auto"
           >
             {localeConfig.buttons.contactNow}
           </button>

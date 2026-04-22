@@ -87,7 +87,7 @@ export default function ContactModal({ isOpen, onClose }) {
               </p>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} className="p-6 pt-4 space-y-4 text-right">
+            <form onSubmit={handleSubmit} className="space-y-4 p-6 pt-4 text-start">
               {/* Nombre */}
               <div>
                 <label className="mb-1.5 block text-sm font-medium text-slate-900">

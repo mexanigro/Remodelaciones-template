@@ -41,14 +41,21 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
   }
 
   body {
     font-family: "Heebo", "Inter", ui-sans-serif, system-ui, sans-serif;
     background-color: #ffffff;
     color: #0f172a;
-    overflow-x: hidden;
-    direction: rtl;
+    overflow-x: clip;
+    /* dirección: usa el `dir` del <html> (main.tsx / locale) */
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
   }
 
   ::selection {

@@ -64,39 +64,34 @@ export default function Process() {
           </div>
         </div>
 
-        {/* Mobile: vertical */}
-        <div className="md:hidden relative">
-          <div className="absolute right-[29px] top-0 bottom-0 w-0.5 bg-gray-200" />
-          <div className="space-y-10">
-            {steps.map((step, i) => {
-              const Icon = iconMap[step.icon];
-              return (
-                <motion.div
-                  key={step.number}
-                  className="flex gap-5 items-start flex-row-reverse text-right"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                >
-                  <div className="w-[60px] h-[60px] rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 relative z-10 border-4 border-white">
-                    <Icon className="h-5 w-5 text-orange-500" />
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold text-orange-500">
-                      {localeConfig.process.stepLabel} {step.number}
-                    </span>
-                    <h3 className="mt-1 font-bold text-slate-900">
-                      {step.title}
-                    </h3>
-                    <p className="mt-1 text-sm text-slate-600">
-                      {step.description}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+        {/* Mobile: timeline con borde lógico (RTL/LTR) */}
+        <div className="md:hidden space-y-10 border-s-2 border-gray-200 ps-10">
+          {steps.map((step, i) => {
+            const Icon = iconMap[step.icon];
+            return (
+              <motion.div
+                key={step.number}
+                className="relative text-start"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <div className="absolute -start-[31px] top-0 z-10 flex h-[60px] w-[60px] items-center justify-center rounded-full border-4 border-white bg-gray-100">
+                  <Icon className="h-5 w-5 text-orange-500" />
+                </div>
+                <span className="text-xs font-bold text-orange-500">
+                  {localeConfig.process.stepLabel} {step.number}
+                </span>
+                <h3 className="mt-1 font-bold text-slate-900">
+                  {step.title}
+                </h3>
+                <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                  {step.description}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

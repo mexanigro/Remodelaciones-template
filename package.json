@@ -5,7 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:he": "cross-env VITE_UI_LANGUAGE=he vite",
+    "dev:en": "cross-env VITE_UI_LANGUAGE=en vite",
     "build": "tsc -b && vite build",
+    "build:he": "cross-env VITE_UI_LANGUAGE=he npm run build",
+    "build:en": "cross-env VITE_UI_LANGUAGE=en npm run build",
+    "verify:locales": "npm run lint && cross-env VITE_UI_LANGUAGE=he npm run build && cross-env VITE_UI_LANGUAGE=en npm run build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -67,6 +72,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
     "autoprefixer": "^10.4.23",
+    "cross-env": "^10.1.0",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",

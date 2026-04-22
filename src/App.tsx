@@ -22,7 +22,7 @@ function App() {
         onOpenContact={() => setContactOpen(true)}
         splashDone={splashDone}
       />
-      <main>
+      <main className="min-w-0">
         <Hero onOpenContact={() => setContactOpen(true)} />
         <Portfolio />
         <Process />

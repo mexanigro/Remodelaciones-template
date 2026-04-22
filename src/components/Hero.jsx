@@ -67,11 +67,11 @@ export default function Hero({ onOpenContact }) {
       {/* acento suave encima del fondo claro */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_-10%,rgba(251,146,60,0.11),transparent_52%)]" />
 
-      <div className="relative max-w-7xl mx-auto px-4 md:px-6 pt-24 pb-16 min-h-screen flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-6 gap-10 lg:gap-14 items-center w-full">
+      <div className="relative mx-auto flex min-h-screen max-w-7xl items-center px-4 pb-16 pt-24 md:px-6">
+        <div className="grid w-full min-w-0 grid-cols-1 items-center gap-10 lg:grid-cols-6 lg:gap-14">
           {/* Copy */}
           <motion.div
-            className="lg:col-span-2 order-2 lg:order-2 text-right"
+            className="order-2 min-w-0 text-start lg:order-2 lg:col-span-2"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.15 }}
@@ -87,19 +87,19 @@ export default function Hero({ onOpenContact }) {
               {brand.heroDescription}
             </p>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 sm:justify-end">
-              <button type="button" onClick={onOpenContact} className={accentBtn}>
+            <div className="mt-8 flex w-full min-w-0 flex-col gap-3 sm:flex-row sm:justify-end sm:gap-4">
+              <button type="button" onClick={onOpenContact} className={`${accentBtn} w-full sm:w-auto`}>
                 <span className="relative z-10">{localeConfig.buttons.freeConsultation}</span>
                 <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_30%_0%,rgba(255,255,255,0.35),transparent_55%)]" />
               </button>
-              <button type="button" onClick={scrollToPortfolio} className={ghostBtn}>
+              <button type="button" onClick={scrollToPortfolio} className={`${ghostBtn} w-full sm:w-auto`}>
                 {localeConfig.buttons.seeProjects}
               </button>
             </div>
 
-            <div className="mt-10 flex flex-wrap gap-6 md:gap-10 justify-end">
+            <div className="mt-10 flex w-full flex-wrap justify-end gap-6 md:gap-10">
               {stats.map((s, i) => (
-                <div key={i} className="text-right min-w-[5.5rem]">
+                <div key={i} className="min-w-[5.5rem] text-start">
                   <p className="bg-gradient-to-l from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-2xl md:text-3xl font-bold text-transparent">
                     {s.value}
                   </p>
@@ -111,18 +111,18 @@ export default function Hero({ onOpenContact }) {
 
           {/* Slider */}
           <motion.div
-            className="lg:col-span-4 order-1 lg:order-1"
+            className="order-1 min-w-0 lg:order-1 lg:col-span-4"
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.28 }}
           >
-            <p className="mb-4 text-right text-sm leading-relaxed text-slate-600 md:text-base">
+            <p className="mb-4 text-start text-sm leading-relaxed text-slate-600 md:text-base">
               {localeConfig.hero.sliderHint}
             </p>
 
             <div
               ref={containerRef}
-              className="relative aspect-[16/10] w-full min-h-[min(82vw,620px)] cursor-ew-resize select-none overflow-hidden rounded-3xl ring-1 ring-slate-900/10 shadow-[0_40px_100px_-48px_rgba(15,23,42,0.35)] touch-pan-x md:aspect-[16/9] lg:aspect-[2/1]"
+              className="relative aspect-[16/10] w-full max-w-full cursor-ew-resize select-none overflow-hidden rounded-3xl ring-1 ring-slate-900/10 shadow-[0_40px_100px_-48px_rgba(15,23,42,0.35)] touch-pan-x min-h-[min(56vw,420px)] sm:min-h-[min(72vw,520px)] md:aspect-[16/9] md:min-h-0 lg:aspect-[2/1] lg:min-h-[min(72vw,620px)]"
               onMouseMove={handleMouseMove}
               onMouseUp={() => {
                 draggingRef.current = false;
@@ -165,7 +165,7 @@ export default function Hero({ onOpenContact }) {
               >
                 <button
                   type="button"
-                  aria-label="הזזת מחוון לפני/אחרי"
+                  aria-label={localeConfig.a11y.sliderThumb}
                   className="absolute top-1/2 left-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-slate-900 shadow-[0_18px_55px_-18px_rgba(0,0,0,0.65)] ring-4 ring-orange-400/35 transition-transform duration-200 hover:scale-105 active:scale-95"
                   onMouseDown={beginDrag}
                   onTouchStart={beginDrag}
