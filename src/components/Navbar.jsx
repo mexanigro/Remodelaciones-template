@@ -2,17 +2,11 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { siteConfig } from "../config/site";
-
-const navLinks = [
-  { label: "Inicio", href: "#hero" },
-  { label: "Proyectos", href: "#portfolio" },
-  { label: "Servicios", href: "#process" },
-  { label: "Por qué nosotros", href: "#whyus" },
-  { label: "Contacto", href: "#contact" },
-];
+import { localeConfig } from "../config/locale";
 
 export default function Navbar({ onOpenContact, splashDone }) {
   const { brand } = siteConfig;
+  const navLinks = localeConfig.navLinks;
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -78,7 +72,7 @@ export default function Navbar({ onOpenContact, splashDone }) {
             onClick={onOpenContact}
             className="bg-[#E07A5F] text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-[#c96a50] transition-colors"
           >
-            Consulta gratuita
+            {localeConfig.buttons.freeConsultation}
           </button>
         </div>
 
@@ -119,7 +113,7 @@ export default function Navbar({ onOpenContact, splashDone }) {
               }}
               className="bg-[#E07A5F] text-white px-5 py-3 rounded-lg text-sm font-medium mt-2"
             >
-              Consulta gratuita
+              {localeConfig.buttons.freeConsultation}
             </button>
           </div>
         </motion.div>

@@ -14,6 +14,7 @@ Template base para vender sitios de remodelaciones/aperturas comerciales y clona
 
 ## Estructura para personalizar por cliente
 - `src/config/presets/remodelaciones.ts`: contenido editable (marca, textos, proyectos, testimonios, etc.)
+- `src/config/locale.ts`: idioma base, direccion (`rtl` / `ltr`) y textos globales de UI
 - `src/config/site.ts`: preset activo + configuracion transversal del template
 - `src/config/env.ts`: lectura centralizada de variables de entorno
 - `src/types/site.ts`: contratos tipados para mantener consistencia
@@ -37,10 +38,11 @@ Si `firebase-applet-config.json` queda incompleto, el template funciona igual y 
 
 ## Checklist rapido para clonar y personalizar
 1. Duplicar repo template.
-2. Editar `src/config/presets/remodelaciones.ts` (branding, textos, portfolio, testimonios).
-3. Configurar `.env`.
-4. Reemplazar `firebase-applet-config.json` si el cliente usa base de datos.
-5. Ejecutar `npm run lint` y `npm run build`.
+2. Editar `src/config/locale.ts` para idioma/direccion y textos globales.
+3. Editar `src/config/presets/remodelaciones.ts` (branding, textos, portfolio, testimonios).
+4. Configurar `.env`.
+5. Reemplazar `firebase-applet-config.json` si el cliente usa base de datos.
+6. Ejecutar `npm run lint` y `npm run build`.
 
 ## Build
 - `npm run lint`

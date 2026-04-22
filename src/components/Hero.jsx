@@ -1,11 +1,12 @@
 import { useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { siteConfig } from "../config/site";
+import { localeConfig } from "../config/locale";
 
 export default function Hero({ onOpenContact }) {
   const { brand, stats } = siteConfig;
   const [headlineStart = "", headlineEnd = ""] = brand.heroHeadline.split(
-    "creamos tu apertura"
+    localeConfig.heroHighlight
   );
   const [sliderPos, setSliderPos] = useState(50);
   const safeSliderPos = Math.max(sliderPos, 1);
@@ -57,7 +58,7 @@ export default function Hero({ onOpenContact }) {
           >
             <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
               {headlineStart}
-              <span className="text-[#E07A5F]">creamos tu apertura</span>
+              <span className="text-[#E07A5F]">{localeConfig.heroHighlight}</span>
               {headlineEnd}
             </h1>
             <p className="mt-6 text-white/60 text-base md:text-lg leading-relaxed">
@@ -70,13 +71,13 @@ export default function Hero({ onOpenContact }) {
                 onClick={onOpenContact}
                 className="bg-[#E07A5F] text-white px-6 py-3.5 rounded-lg font-medium hover:bg-[#c96a50] transition-colors text-center"
               >
-                Pedí tu consulta gratuita
+                {localeConfig.buttons.freeConsultation}
               </button>
               <button
                 onClick={scrollToPortfolio}
                 className="border border-white/30 text-white px-6 py-3.5 rounded-lg font-medium hover:border-white/60 transition-colors text-center"
               >
-                Ver trabajos realizados
+                {localeConfig.buttons.seeProjects}
               </button>
             </div>
 
@@ -114,7 +115,7 @@ export default function Hero({ onOpenContact }) {
               {/* Imagen "después" (fondo) */}
               <img
                 src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
-                alt="Después - Local remodelado"
+                alt={localeConfig.hero.afterAlt}
                 className="absolute inset-0 w-full h-full object-cover"
                 draggable={false}
               />
@@ -126,7 +127,7 @@ export default function Hero({ onOpenContact }) {
               >
                 <img
                   src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1200"
-                  alt="Antes - Obra en construcción"
+                  alt={localeConfig.hero.beforeAlt}
                   className="absolute inset-0 h-full object-cover max-w-none"
                   style={{ width: `${(100 / safeSliderPos) * 100}%` }}
                   draggable={false}
@@ -154,11 +155,11 @@ export default function Hero({ onOpenContact }) {
               </div>
 
               {/* Labels */}
-              <span className="absolute top-4 left-4 bg-black/60 text-white text-xs px-3 py-1 rounded-full z-10">
-                Antes
+              <span className="absolute top-4 right-4 bg-black/60 text-white text-xs px-3 py-1 rounded-full z-10">
+                {localeConfig.hero.beforeLabel}
               </span>
-              <span className="absolute top-4 right-4 bg-[#E07A5F]/90 text-white text-xs px-3 py-1 rounded-full z-10">
-                Después
+              <span className="absolute top-4 left-4 bg-[#E07A5F]/90 text-white text-xs px-3 py-1 rounded-full z-10">
+                {localeConfig.hero.afterLabel}
               </span>
             </div>
           </motion.div>

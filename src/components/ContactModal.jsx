@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import { localeConfig } from "../config/locale";
 
 export default function ContactModal({ isOpen, onClose }) {
   const [form, setForm] = useState({
@@ -47,7 +48,7 @@ export default function ContactModal({ isOpen, onClose }) {
           {/* Header */}
           <div className="flex items-center justify-between p-6 pb-0">
             <h3 className="text-xl font-bold text-[#1A1A1A]">
-              Pedí tu consulta gratuita
+              {localeConfig.contactModal.title}
             </h3>
             <button
               onClick={onClose}
@@ -79,18 +80,18 @@ export default function ContactModal({ isOpen, onClose }) {
                 </svg>
               </div>
               <p className="text-lg font-semibold text-[#1A1A1A]">
-                ¡Consulta enviada!
+                {localeConfig.contactModal.successTitle}
               </p>
               <p className="text-[#6B7280] mt-2">
-                Te respondemos en menos de 24 horas.
+                {localeConfig.contactModal.successSubtitle}
               </p>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} className="p-6 pt-4 space-y-4">
+            <form onSubmit={handleSubmit} className="p-6 pt-4 space-y-4 text-right">
               {/* Nombre */}
               <div>
                 <label className="block text-sm font-medium text-[#1A1A1A] mb-1.5">
-                  Nombre completo
+                  {localeConfig.contactModal.labels.fullName}
                 </label>
                 <input
                   type="text"
@@ -98,7 +99,7 @@ export default function ContactModal({ isOpen, onClose }) {
                   required
                   value={form.nombre}
                   onChange={handleChange}
-                  placeholder="Ej: Juan Pérez"
+                  placeholder={localeConfig.contactModal.placeholders.fullName}
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#E07A5F] focus:ring-2 focus:ring-[#E07A5F]/20 outline-none transition-all text-sm"
                 />
               </div>
@@ -106,7 +107,7 @@ export default function ContactModal({ isOpen, onClose }) {
               {/* WhatsApp */}
               <div>
                 <label className="block text-sm font-medium text-[#1A1A1A] mb-1.5">
-                  WhatsApp
+                  {localeConfig.contactModal.labels.whatsapp}
                 </label>
                 <input
                   type="tel"
@@ -114,7 +115,7 @@ export default function ContactModal({ isOpen, onClose }) {
                   required
                   value={form.whatsapp}
                   onChange={handleChange}
-                  placeholder="+54 11 1234-5678"
+                  placeholder={localeConfig.contactModal.placeholders.whatsapp}
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#E07A5F] focus:ring-2 focus:ring-[#E07A5F]/20 outline-none transition-all text-sm"
                 />
               </div>
@@ -122,7 +123,7 @@ export default function ContactModal({ isOpen, onClose }) {
               {/* Tipo de negocio */}
               <div>
                 <label className="block text-sm font-medium text-[#1A1A1A] mb-1.5">
-                  Tipo de negocio
+                  {localeConfig.contactModal.labels.businessType}
                 </label>
                 <select
                   name="tipo"
@@ -131,20 +132,18 @@ export default function ContactModal({ isOpen, onClose }) {
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#E07A5F] focus:ring-2 focus:ring-[#E07A5F]/20 outline-none transition-all text-sm bg-white"
                 >
-                  <option value="">Seleccionar...</option>
-                  <option value="bar">Bar</option>
-                  <option value="cafeteria">Cafetería</option>
-                  <option value="restaurante">Restaurante</option>
-                  <option value="retail">Retail</option>
-                  <option value="oficina">Oficina</option>
-                  <option value="otro">Otro</option>
+                  {localeConfig.contactModal.businessTypeOptions.map((option) => (
+                    <option key={option.value || "default"} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
                 </select>
               </div>
 
               {/* Remodelación o apertura */}
               <div>
                 <label className="block text-sm font-medium text-[#1A1A1A] mb-2">
-                  ¿Es remodelación o apertura?
+                  {localeConfig.contactModal.serviceQuestion}
                 </label>
                 <div className="flex gap-4">
                   <label className="flex items-center gap-2 cursor-pointer">
@@ -156,7 +155,9 @@ export default function ContactModal({ isOpen, onClose }) {
                       onChange={handleChange}
                       className="accent-[#E07A5F]"
                     />
-                    <span className="text-sm">Remodelación</span>
+                    <span className="text-sm">
+                      {localeConfig.contactModal.serviceOptions.remodelacion}
+                    </span>
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
@@ -167,7 +168,9 @@ export default function ContactModal({ isOpen, onClose }) {
                       onChange={handleChange}
                       className="accent-[#E07A5F]"
                     />
-                    <span className="text-sm">Apertura</span>
+                    <span className="text-sm">
+                      {localeConfig.contactModal.serviceOptions.apertura}
+                    </span>
                   </label>
                 </div>
               </div>
@@ -175,7 +178,7 @@ export default function ContactModal({ isOpen, onClose }) {
               {/* Zona */}
               <div>
                 <label className="block text-sm font-medium text-[#1A1A1A] mb-1.5">
-                  Zona / Barrio
+                  {localeConfig.contactModal.labels.area}
                 </label>
                 <input
                   type="text"
@@ -183,7 +186,7 @@ export default function ContactModal({ isOpen, onClose }) {
                   required
                   value={form.zona}
                   onChange={handleChange}
-                  placeholder="Ej: Palermo, Buenos Aires"
+                  placeholder={localeConfig.contactModal.placeholders.area}
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#E07A5F] focus:ring-2 focus:ring-[#E07A5F]/20 outline-none transition-all text-sm"
                 />
               </div>
@@ -193,11 +196,11 @@ export default function ContactModal({ isOpen, onClose }) {
                 type="submit"
                 className="w-full bg-[#E07A5F] text-white py-3.5 rounded-lg font-medium hover:bg-[#c96a50] transition-colors mt-2"
               >
-                Enviar consulta
+                {localeConfig.contactModal.submit}
               </button>
 
               <p className="text-center text-xs text-[#6B7280] mt-3">
-                Te respondemos en menos de 24 horas
+                {localeConfig.contactModal.note}
               </p>
             </form>
           )}

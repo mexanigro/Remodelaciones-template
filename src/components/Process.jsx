@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { MessageCircle, PenTool, Hammer, Key } from "lucide-react";
 import { siteConfig } from "../config/site";
+import { localeConfig } from "../config/locale";
 
 const iconMap = {
   MessageCircle,
@@ -23,8 +24,8 @@ export default function Process() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-[#1A1A1A] text-3xl md:text-4xl font-bold">
-            De la idea a tu negocio abierto,{" "}
-            <span className="text-[#E07A5F]">en 4 pasos</span>
+            {localeConfig.process.titleStart}{" "}
+            <span className="text-[#E07A5F]">{localeConfig.process.titleHighlight}</span>
           </h2>
         </motion.div>
 
@@ -63,14 +64,14 @@ export default function Process() {
 
         {/* Mobile: vertical */}
         <div className="md:hidden relative">
-          <div className="absolute left-[29px] top-0 bottom-0 w-0.5 bg-gray-200" />
+          <div className="absolute right-[29px] top-0 bottom-0 w-0.5 bg-gray-200" />
           <div className="space-y-10">
             {steps.map((step, i) => {
               const Icon = iconMap[step.icon];
               return (
                 <motion.div
                   key={step.number}
-                  className="flex gap-5 items-start"
+                  className="flex gap-5 items-start flex-row-reverse text-right"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -81,7 +82,7 @@ export default function Process() {
                   </div>
                   <div>
                     <span className="text-[#E07A5F] text-xs font-bold">
-                      PASO {step.number}
+                      {localeConfig.process.stepLabel} {step.number}
                     </span>
                     <h3 className="font-bold text-[#1A1A1A] mt-1">
                       {step.title}

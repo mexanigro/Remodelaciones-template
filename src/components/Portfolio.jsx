@@ -2,9 +2,11 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { siteConfig } from "../config/site";
+import { localeConfig } from "../config/locale";
 
 export default function Portfolio() {
   const { projects, filters } = siteConfig;
+  const isRtl = localeConfig.dir === "rtl";
   const [activeFilter, setActiveFilter] = useState("todos");
   const [selectedProject, setSelectedProject] = useState(null);
   const [currentImage, setCurrentImage] = useState(0);
@@ -12,7 +14,7 @@ export default function Portfolio() {
   const filtered =
     activeFilter === "todos"
       ? projects
-      : projects.filter((p) => p.category === activeFilter || p.type.toLowerCase().replace(/ó/g, "o") === activeFilter);
+      : projects.filter((p) => p.category === activeFilter || p.typeKey === activeFilter);
 
   const openModal = (project) => {
     setSelectedProject(project);
@@ -53,7 +55,7 @@ export default function Portfolio() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-[#1A1A1A] text-3xl md:text-4xl font-bold">
-            Proyectos que hablan por sí solos
+            {localeConfig.portfolio.title}
           </h2>
         </motion.div>
 
@@ -103,8 +105,8 @@ export default function Portfolio() {
                   />
                   {/* Badge */}
                   <span
-                    className={`absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full ${
-                      project.type === "Apertura"
+                    className={`absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full ${
+                      project.typeKey === "aperturas"
                         ? "bg-[#E07A5F] text-white"
                         : "bg-[#1A1A1A] text-white"
                     }`}
@@ -114,7 +116,7 @@ export default function Portfolio() {
                   {/* Hover overlay */}
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <span className="text-white text-sm font-medium">
-                      Ver proyecto →
+                      {localeConfig.portfolio.viewProject}
                     </span>
                   </div>
                 </div>
@@ -162,18 +164,18 @@ export default function Portfolio() {
                 />
                 <button
                   onClick={prevImage}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center hover:bg-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center hover:bg-white"
                 >
-                  <ChevronLeft className="w-5 h-5" />
+                  {isRtl ? <ChevronRight className="w-5 h-5" /> : <ChevronLeft className="w-5 h-5" />}
                 </button>
                 <button
                   onClick={nextImage}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center hover:bg-white"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center hover:bg-white"
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  {isRtl ? <ChevronLeft className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
                 </button>
                 {/* Dots */}
-                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+                <div className="absolute bottom-3 right-1/2 translate-x-1/2 flex gap-2">
                   {selectedProject.images.map((_, i) => (
                     <button
                       key={i}
@@ -187,7 +189,7 @@ export default function Portfolio() {
                 {/* Close */}
                 <button
                   onClick={closeModal}
-                  className="absolute top-3 right-3 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center hover:bg-white"
+                  className="absolute top-3 left-3 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center hover:bg-white"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -198,7 +200,7 @@ export default function Portfolio() {
                 <div className="flex items-center gap-3 mb-3">
                   <span
                     className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full ${
-                      selectedProject.type === "Apertura"
+                      selectedProject.typeKey === "aperturas"
                         ? "bg-[#E07A5F] text-white"
                         : "bg-[#1A1A1A] text-white"
                     }`}

@@ -37,10 +37,11 @@
   }
 
   body {
-    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    font-family: "Heebo", "Inter", ui-sans-serif, system-ui, sans-serif;
     background-color: #ffffff;
     color: #1a1a1a;
     overflow-x: hidden;
+    direction: rtl;
   }
 
   ::selection {

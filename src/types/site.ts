@@ -5,7 +5,7 @@ export type StatItem = {
   label: string;
 };
 
-export type ProjectType = "Apertura" | "Remodelación";
+export type ProjectType = string;
 
 export type ProjectCategory =
   | "cafeterias"
@@ -17,6 +17,7 @@ export type Project = {
   id: number;
   title: string;
   type: ProjectType;
+  typeKey: "aperturas" | "remodelaciones";
   category: ProjectCategory;
   days: string;
   size: string;

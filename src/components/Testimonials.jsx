@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { siteConfig } from "../config/site";
+import { localeConfig } from "../config/locale";
 
 export default function Testimonials() {
   const { testimonials } = siteConfig;
@@ -26,8 +27,8 @@ export default function Testimonials() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-[#1A1A1A] text-3xl md:text-4xl font-bold">
-            Lo que dicen los{" "}
-            <span className="text-[#E07A5F]">dueños de negocio</span>
+            {localeConfig.testimonials.titleStart}{" "}
+            <span className="text-[#E07A5F]">{localeConfig.testimonials.titleHighlight}</span>
           </h2>
         </motion.div>
 
@@ -81,13 +82,21 @@ export default function Testimonials() {
               onClick={prev}
               className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition-colors"
             >
-              <ChevronLeft className="w-4 h-4" />
+              {localeConfig.dir === "rtl" ? (
+                <ChevronRight className="w-4 h-4" />
+              ) : (
+                <ChevronLeft className="w-4 h-4" />
+              )}
             </button>
             <button
               onClick={next}
               className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition-colors"
             >
-              <ChevronRight className="w-4 h-4" />
+              {localeConfig.dir === "rtl" ? (
+                <ChevronLeft className="w-4 h-4" />
+              ) : (
+                <ChevronRight className="w-4 h-4" />
+              )}
             </button>
           </div>
 

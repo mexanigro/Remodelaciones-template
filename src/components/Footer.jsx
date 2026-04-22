@@ -1,16 +1,10 @@
 import { siteConfig } from "../config/site";
+import { localeConfig } from "../config/locale";
 import { Instagram, Facebook, Twitter, MapPin, Phone, Mail } from "lucide-react";
-
-const footerLinks = [
-  { label: "Inicio", href: "#hero" },
-  { label: "Proyectos", href: "#portfolio" },
-  { label: "Servicios", href: "#process" },
-  { label: "Por qué nosotros", href: "#whyus" },
-  { label: "Contacto", href: "#contact" },
-];
 
 export default function Footer() {
   const { brand } = siteConfig;
+  const footerLinks = localeConfig.navLinks;
 
   const scrollTo = (href) => {
     const el = document.querySelector(href);
@@ -30,8 +24,7 @@ export default function Footer() {
               </span>
             </h3>
             <p className="mt-3 text-white/50 text-sm leading-relaxed">
-              {brand.tagline}. Diseño + obra llave en mano para que tu negocio
-              empiece a facturar.
+              {localeConfig.footer.brandDescription}
             </p>
             <div className="flex gap-4 mt-5">
               <a
@@ -58,7 +51,7 @@ export default function Footer() {
           {/* Links */}
           <div>
             <h4 className="text-sm font-semibold uppercase tracking-wider text-white/40 mb-4">
-              Navegación
+              {localeConfig.footer.navTitle}
             </h4>
             <div className="flex flex-col gap-2.5">
               {footerLinks.map((link) => (
@@ -80,7 +73,7 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <h4 className="text-sm font-semibold uppercase tracking-wider text-white/40 mb-4">
-              Contacto
+              {localeConfig.footer.contactTitle}
             </h4>
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-white/60 text-sm">
@@ -102,7 +95,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 pt-8 border-t border-white/10 text-center">
           <p className="text-white/30 text-xs">
-            © 2026 Renova Locales. Todos los derechos reservados.
+            {localeConfig.footer.copyright}
           </p>
         </div>
       </div>

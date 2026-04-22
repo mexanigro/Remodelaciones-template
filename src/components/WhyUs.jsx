@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { siteConfig } from "../config/site";
+import { localeConfig } from "../config/locale";
 
 export default function WhyUs() {
   const { whyUsItems } = siteConfig;
@@ -19,7 +20,7 @@ export default function WhyUs() {
             <div className="rounded-2xl overflow-hidden shadow-lg">
               <img
                 src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1000"
-                alt="Local moderno remodelado"
+                alt={localeConfig.whyUs.imageAlt}
                 className="w-full h-full object-cover aspect-[4/3]"
                 loading="lazy"
               />
@@ -34,7 +35,8 @@ export default function WhyUs() {
             transition={{ duration: 0.7 }}
           >
             <h2 className="text-[#1A1A1A] text-3xl md:text-4xl font-bold mb-8">
-              ¿Por qué <span className="text-[#E07A5F]">nos eligen</span>?
+              {localeConfig.whyUs.titleStart}{" "}
+              <span className="text-[#E07A5F]">{localeConfig.whyUs.titleHighlight}</span>
             </h2>
 
             <div className="space-y-5">
