@@ -36,14 +36,15 @@ export default function SplashScreen({ onComplete }) {
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#1a1a1a]"
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center hero-backdrop"
           initial={{ y: 0 }}
           exit={{ y: "-100vh" }}
           transition={{ duration: 1.2, ease: [0.65, 0, 0.35, 1] }}
         >
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.07),transparent_62%)]" />
           {/* Nombre de marca */}
           <motion.h1
-            className="text-white text-4xl md:text-6xl lg:text-7xl font-bold tracking-[0.15em] text-center"
+            className="bg-gradient-to-l from-white via-white to-orange-100 bg-clip-text text-center text-4xl font-extrabold tracking-tight text-transparent md:text-6xl lg:text-7xl"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -53,7 +54,7 @@ export default function SplashScreen({ onComplete }) {
 
           {/* Subtítulo */}
           <motion.p
-            className="mt-4 text-white/60 text-sm md:text-base font-light tracking-[0.2em] uppercase"
+            className="mt-4 text-sm md:text-base font-medium tracking-wide text-white/72"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -63,9 +64,9 @@ export default function SplashScreen({ onComplete }) {
 
           {/* Línea decorativa */}
           <motion.div
-            className="mt-6 h-px bg-[#E07A5F]"
+            className="mt-6 h-[2px] rounded-full bg-gradient-to-l from-orange-400 via-orange-500 to-orange-600"
             initial={{ width: 0 }}
-            animate={{ width: 120 }}
+            animate={{ width: 140 }}
             transition={{ duration: 1, delay: 0.8 }}
           />
 

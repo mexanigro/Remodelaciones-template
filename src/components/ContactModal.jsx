@@ -32,14 +32,14 @@ export default function ContactModal({ isOpen, onClose }) {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-[200] bg-black/60 flex items-center justify-center p-4"
+        className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-900/55 p-4 backdrop-blur-sm"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
       >
         <motion.div
-          className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+          className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-3xl border border-white/70 bg-white/95 shadow-[0_50px_120px_-65px_rgba(15,23,42,0.75)] backdrop-blur"
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
@@ -47,14 +47,14 @@ export default function ContactModal({ isOpen, onClose }) {
         >
           {/* Header */}
           <div className="flex items-center justify-between p-6 pb-0">
-            <h3 className="text-xl font-bold text-[#1A1A1A]">
+            <h3 className="text-xl font-bold text-slate-900">
               {localeConfig.contactModal.title}
             </h3>
             <button
               onClick={onClose}
-              className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition-colors hover:border-orange-200 hover:bg-orange-50 hover:text-orange-700"
             >
-              <X className="w-4 h-4" />
+              <X className="h-4 w-4" />
             </button>
           </div>
 
@@ -79,10 +79,10 @@ export default function ContactModal({ isOpen, onClose }) {
                   />
                 </svg>
               </div>
-              <p className="text-lg font-semibold text-[#1A1A1A]">
+              <p className="text-lg font-semibold text-slate-900">
                 {localeConfig.contactModal.successTitle}
               </p>
-              <p className="text-[#6B7280] mt-2">
+              <p className="mt-2 text-slate-600">
                 {localeConfig.contactModal.successSubtitle}
               </p>
             </motion.div>
@@ -90,7 +90,7 @@ export default function ContactModal({ isOpen, onClose }) {
             <form onSubmit={handleSubmit} className="p-6 pt-4 space-y-4 text-right">
               {/* Nombre */}
               <div>
-                <label className="block text-sm font-medium text-[#1A1A1A] mb-1.5">
+                <label className="mb-1.5 block text-sm font-medium text-slate-900">
                   {localeConfig.contactModal.labels.fullName}
                 </label>
                 <input
@@ -100,13 +100,13 @@ export default function ContactModal({ isOpen, onClose }) {
                   value={form.nombre}
                   onChange={handleChange}
                   placeholder={localeConfig.contactModal.placeholders.fullName}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#E07A5F] focus:ring-2 focus:ring-[#E07A5F]/20 outline-none transition-all text-sm"
+                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition-all placeholder:text-slate-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/25"
                 />
               </div>
 
               {/* WhatsApp */}
               <div>
-                <label className="block text-sm font-medium text-[#1A1A1A] mb-1.5">
+                <label className="mb-1.5 block text-sm font-medium text-slate-900">
                   {localeConfig.contactModal.labels.whatsapp}
                 </label>
                 <input
@@ -116,13 +116,13 @@ export default function ContactModal({ isOpen, onClose }) {
                   value={form.whatsapp}
                   onChange={handleChange}
                   placeholder={localeConfig.contactModal.placeholders.whatsapp}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#E07A5F] focus:ring-2 focus:ring-[#E07A5F]/20 outline-none transition-all text-sm"
+                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition-all placeholder:text-slate-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/25"
                 />
               </div>
 
               {/* Tipo de negocio */}
               <div>
-                <label className="block text-sm font-medium text-[#1A1A1A] mb-1.5">
+                <label className="mb-1.5 block text-sm font-medium text-slate-900">
                   {localeConfig.contactModal.labels.businessType}
                 </label>
                 <select
@@ -130,7 +130,7 @@ export default function ContactModal({ isOpen, onClose }) {
                   required
                   value={form.tipo}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#E07A5F] focus:ring-2 focus:ring-[#E07A5F]/20 outline-none transition-all text-sm bg-white"
+                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition-all focus:border-orange-400 focus:ring-2 focus:ring-orange-400/25"
                 >
                   {localeConfig.contactModal.businessTypeOptions.map((option) => (
                     <option key={option.value || "default"} value={option.value}>
@@ -142,7 +142,7 @@ export default function ContactModal({ isOpen, onClose }) {
 
               {/* Remodelación o apertura */}
               <div>
-                <label className="block text-sm font-medium text-[#1A1A1A] mb-2">
+                <label className="mb-2 block text-sm font-medium text-slate-900">
                   {localeConfig.contactModal.serviceQuestion}
                 </label>
                 <div className="flex gap-4">
@@ -153,7 +153,7 @@ export default function ContactModal({ isOpen, onClose }) {
                       value="remodelacion"
                       checked={form.servicio === "remodelacion"}
                       onChange={handleChange}
-                      className="accent-[#E07A5F]"
+                      className="accent-orange-500"
                     />
                     <span className="text-sm">
                       {localeConfig.contactModal.serviceOptions.remodelacion}
@@ -166,7 +166,7 @@ export default function ContactModal({ isOpen, onClose }) {
                       value="apertura"
                       checked={form.servicio === "apertura"}
                       onChange={handleChange}
-                      className="accent-[#E07A5F]"
+                      className="accent-orange-500"
                     />
                     <span className="text-sm">
                       {localeConfig.contactModal.serviceOptions.apertura}
@@ -177,7 +177,7 @@ export default function ContactModal({ isOpen, onClose }) {
 
               {/* Zona */}
               <div>
-                <label className="block text-sm font-medium text-[#1A1A1A] mb-1.5">
+                <label className="mb-1.5 block text-sm font-medium text-slate-900">
                   {localeConfig.contactModal.labels.area}
                 </label>
                 <input
@@ -187,19 +187,19 @@ export default function ContactModal({ isOpen, onClose }) {
                   value={form.zona}
                   onChange={handleChange}
                   placeholder={localeConfig.contactModal.placeholders.area}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#E07A5F] focus:ring-2 focus:ring-[#E07A5F]/20 outline-none transition-all text-sm"
+                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition-all placeholder:text-slate-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/25"
                 />
               </div>
 
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full bg-[#E07A5F] text-white py-3.5 rounded-lg font-medium hover:bg-[#c96a50] transition-colors mt-2"
+                className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-gradient-to-l from-orange-400 via-orange-500 to-orange-600 px-6 py-3.5 text-sm font-semibold text-white shadow-[0_22px_65px_-35px_rgba(249,115,22,0.65)] transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_26px_75px_-38px_rgba(249,115,22,0.72)] active:translate-y-0"
               >
                 {localeConfig.contactModal.submit}
               </button>
 
-              <p className="text-center text-xs text-[#6B7280] mt-3">
+              <p className="mt-3 text-center text-xs text-slate-600">
                 {localeConfig.contactModal.note}
               </p>
             </form>

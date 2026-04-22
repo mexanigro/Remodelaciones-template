@@ -26,20 +26,22 @@ export default function Testimonials() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-[#1A1A1A] text-3xl md:text-4xl font-bold">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
             {localeConfig.testimonials.titleStart}{" "}
-            <span className="text-[#E07A5F]">{localeConfig.testimonials.titleHighlight}</span>
+            <span className="bg-gradient-to-l from-orange-400 to-orange-600 bg-clip-text text-transparent">
+              {localeConfig.testimonials.titleHighlight}
+            </span>
           </h2>
         </motion.div>
 
         <motion.div
-          className="relative bg-[#F9FAFB] rounded-2xl p-8 md:p-12"
+          className="relative rounded-3xl border border-black/5 bg-gradient-to-b from-white to-slate-50 p-8 shadow-[0_35px_120px_-75px_rgba(15,23,42,0.55)] md:p-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <Quote className="w-10 h-10 text-[#E07A5F]/20 mb-4" />
+          <Quote className="mb-4 h-10 w-10 text-orange-500/25" />
 
           <AnimatePresence mode="wait">
             <motion.div
@@ -55,12 +57,12 @@ export default function Testimonials() {
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className="w-5 h-5 fill-[#E07A5F] text-[#E07A5F]"
+                    className="h-5 w-5 fill-orange-500 text-orange-500"
                   />
                 ))}
               </div>
 
-              <p className="text-[#1A1A1A] text-lg md:text-xl leading-relaxed italic max-w-2xl mx-auto">
+              <p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-900 md:text-xl">
                 "{t.text}"
               </p>
 
@@ -70,8 +72,8 @@ export default function Testimonials() {
                   alt={t.name}
                   className="w-14 h-14 rounded-full object-cover"
                 />
-                <p className="mt-3 font-semibold text-[#1A1A1A]">{t.name}</p>
-                <p className="text-sm text-[#6B7280]">{t.business}</p>
+                <p className="mt-3 font-semibold text-slate-900">{t.name}</p>
+                <p className="text-sm text-slate-600">{t.business}</p>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -80,7 +82,7 @@ export default function Testimonials() {
           <div className="flex justify-center gap-3 mt-8">
             <button
               onClick={prev}
-              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition-colors"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white transition-colors hover:border-orange-200 hover:bg-orange-50"
             >
               {localeConfig.dir === "rtl" ? (
                 <ChevronRight className="w-4 h-4" />
@@ -90,7 +92,7 @@ export default function Testimonials() {
             </button>
             <button
               onClick={next}
-              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition-colors"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white transition-colors hover:border-orange-200 hover:bg-orange-50"
             >
               {localeConfig.dir === "rtl" ? (
                 <ChevronLeft className="w-4 h-4" />
@@ -107,7 +109,9 @@ export default function Testimonials() {
                 key={i}
                 onClick={() => setCurrent(i)}
                 className={`w-2 h-2 rounded-full transition-all ${
-                  i === current ? "bg-[#E07A5F] w-6" : "bg-gray-300"
+                  i === current
+                    ? "w-6 bg-gradient-to-l from-orange-400 via-orange-500 to-orange-600 shadow-[0_14px_40px_-28px_rgba(249,115,22,0.55)]"
+                    : "bg-slate-300"
                 }`}
               />
             ))}

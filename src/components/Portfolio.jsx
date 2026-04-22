@@ -54,7 +54,7 @@ export default function Portfolio() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-[#1A1A1A] text-3xl md:text-4xl font-bold">
+          <h2 className="text-slate-900 text-3xl md:text-4xl font-bold tracking-tight">
             {localeConfig.portfolio.title}
           </h2>
         </motion.div>
@@ -73,8 +73,8 @@ export default function Portfolio() {
               onClick={() => setActiveFilter(f.key)}
               className={`px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
                 activeFilter === f.key
-                  ? "bg-[#E07A5F] text-white"
-                  : "bg-gray-100 text-[#6B7280] hover:bg-gray-200"
+                  ? "bg-gradient-to-l from-orange-400 via-orange-500 to-orange-600 text-white shadow-[0_14px_40px_-28px_rgba(249,115,22,0.75)]"
+                  : "bg-slate-100 text-slate-600 hover:bg-slate-200/90"
               }`}
             >
               {f.label}
@@ -107,24 +107,24 @@ export default function Portfolio() {
                   <span
                     className={`absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full ${
                       project.typeKey === "aperturas"
-                        ? "bg-[#E07A5F] text-white"
-                        : "bg-[#1A1A1A] text-white"
+                        ? "bg-gradient-to-l from-orange-500 to-orange-600 text-white"
+                        : "bg-slate-900 text-white"
                     }`}
                   >
                     {project.type}
                   </span>
                   {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <div className="absolute inset-0 flex items-center justify-center bg-slate-950/45 opacity-0 transition-opacity group-hover:opacity-100">
                     <span className="text-white text-sm font-medium">
                       {localeConfig.portfolio.viewProject}
                     </span>
                   </div>
                 </div>
                 <div className="p-4">
-                  <h3 className="font-semibold text-[#1A1A1A]">
+                  <h3 className="font-semibold text-slate-900">
                     {project.title}
                   </h3>
-                  <div className="flex gap-2 mt-2 text-xs text-[#6B7280]">
+                  <div className="flex gap-2 mt-2 text-xs text-slate-600">
                     <span>{project.days}</span>
                     <span>·</span>
                     <span>{project.size}</span>
@@ -142,14 +142,14 @@ export default function Portfolio() {
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className="fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-4"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeModal}
           >
             <motion.div
-              className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
+              className="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-3xl border border-white/70 bg-white/95 shadow-[0_45px_120px_-65px_rgba(15,23,42,0.75)] backdrop-blur"
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
@@ -164,13 +164,13 @@ export default function Portfolio() {
                 />
                 <button
                   onClick={prevImage}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center hover:bg-white"
+                  className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-white/90 text-slate-800 shadow-[0_18px_55px_-25px_rgba(15,23,42,0.45)] transition-colors hover:bg-white"
                 >
                   {isRtl ? <ChevronRight className="w-5 h-5" /> : <ChevronLeft className="w-5 h-5" />}
                 </button>
                 <button
                   onClick={nextImage}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center hover:bg-white"
+                  className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-white/90 text-slate-800 shadow-[0_18px_55px_-25px_rgba(15,23,42,0.45)] transition-colors hover:bg-white"
                 >
                   {isRtl ? <ChevronLeft className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
                 </button>
@@ -201,20 +201,20 @@ export default function Portfolio() {
                   <span
                     className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full ${
                       selectedProject.typeKey === "aperturas"
-                        ? "bg-[#E07A5F] text-white"
-                        : "bg-[#1A1A1A] text-white"
+                        ? "bg-gradient-to-l from-orange-500 to-orange-600 text-white"
+                        : "bg-slate-900 text-white"
                     }`}
                   >
                     {selectedProject.type}
                   </span>
-                  <span className="text-xs text-[#6B7280]">
+                  <span className="text-xs text-slate-600">
                     {selectedProject.days} · {selectedProject.size}
                   </span>
                 </div>
-                <h3 className="text-xl font-bold text-[#1A1A1A]">
+                <h3 className="text-xl font-bold text-slate-900">
                   {selectedProject.title}
                 </h3>
-                <p className="mt-3 text-[#6B7280] leading-relaxed">
+                <p className="mt-3 text-slate-600 leading-relaxed">
                   {selectedProject.description}
                 </p>
               </div>

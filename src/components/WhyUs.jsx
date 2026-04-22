@@ -7,7 +7,7 @@ export default function WhyUs() {
   const { whyUsItems } = siteConfig;
 
   return (
-    <section id="whyus" className="py-20 md:py-28 bg-[#F9FAFB]">
+    <section id="whyus" className="bg-slate-50 py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Imagen izquierda */}
@@ -17,7 +17,7 @@ export default function WhyUs() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <div className="rounded-2xl overflow-hidden shadow-lg">
+            <div className="overflow-hidden rounded-3xl shadow-[0_35px_120px_-65px_rgba(15,23,42,0.55)] ring-1 ring-black/5">
               <img
                 src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1000"
                 alt={localeConfig.whyUs.imageAlt}
@@ -34,25 +34,27 @@ export default function WhyUs() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="text-[#1A1A1A] text-3xl md:text-4xl font-bold mb-8">
+            <h2 className="mb-8 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
               {localeConfig.whyUs.titleStart}{" "}
-              <span className="text-[#E07A5F]">{localeConfig.whyUs.titleHighlight}</span>
+              <span className="bg-gradient-to-l from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                {localeConfig.whyUs.titleHighlight}
+              </span>
             </h2>
 
             <div className="space-y-5">
               {whyUsItems.map((item, i) => (
                 <motion.div
                   key={i}
-                  className="flex gap-4 items-start"
+                  className="flex flex-row-reverse items-start gap-4 text-right"
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                 >
-                  <div className="w-6 h-6 rounded-full bg-[#E07A5F]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Check className="w-3.5 h-3.5 text-[#E07A5F]" />
+                  <div className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-orange-500/10 ring-1 ring-orange-500/15">
+                    <Check className="h-3.5 w-3.5 text-orange-600" />
                   </div>
-                  <p className="text-[#1A1A1A] text-base leading-relaxed">
+                  <p className="text-base leading-relaxed text-slate-800">
                     {item}
                   </p>
                 </motion.div>

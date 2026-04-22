@@ -23,9 +23,11 @@ export default function Process() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-[#1A1A1A] text-3xl md:text-4xl font-bold">
+          <h2 className="text-slate-900 text-3xl md:text-4xl font-bold tracking-tight">
             {localeConfig.process.titleStart}{" "}
-            <span className="text-[#E07A5F]">{localeConfig.process.titleHighlight}</span>
+            <span className="bg-gradient-to-l from-orange-400 to-orange-600 bg-clip-text text-transparent">
+              {localeConfig.process.titleHighlight}
+            </span>
           </h2>
         </motion.div>
 
@@ -48,12 +50,12 @@ export default function Process() {
                 >
                   {/* Icon circle */}
                   <div className="w-[120px] h-[120px] mx-auto rounded-full bg-gray-100 flex items-center justify-center relative z-10 border-4 border-white">
-                    <Icon className="w-8 h-8 text-[#E07A5F]" />
+                    <Icon className="h-8 w-8 text-orange-500" />
                   </div>
-                  <h3 className="mt-6 font-bold text-[#1A1A1A]">
+                  <h3 className="mt-6 font-bold text-slate-900">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-sm text-[#6B7280] leading-relaxed max-w-[200px] mx-auto">
+                  <p className="mx-auto mt-2 max-w-[200px] text-sm leading-relaxed text-slate-600">
                     {step.description}
                   </p>
                 </motion.div>
@@ -78,16 +80,16 @@ export default function Process() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
                   <div className="w-[60px] h-[60px] rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 relative z-10 border-4 border-white">
-                    <Icon className="w-5 h-5 text-[#E07A5F]" />
+                    <Icon className="h-5 w-5 text-orange-500" />
                   </div>
                   <div>
-                    <span className="text-[#E07A5F] text-xs font-bold">
+                    <span className="text-xs font-bold text-orange-500">
                       {localeConfig.process.stepLabel} {step.number}
                     </span>
-                    <h3 className="font-bold text-[#1A1A1A] mt-1">
+                    <h3 className="mt-1 font-bold text-slate-900">
                       {step.title}
                     </h3>
-                    <p className="text-sm text-[#6B7280] mt-1">
+                    <p className="mt-1 text-sm text-slate-600">
                       {step.description}
                     </p>
                   </div>

@@ -4,6 +4,13 @@
 
 @layer base {
   :root {
+    /* Marketing / hero — deep blue-slate, not flat black */
+    --brand-bg-deep: 222 47% 8%;
+    --brand-bg-mid: 222 38% 14%;
+    --brand-accent: 14 72% 58%;
+    --brand-accent-bright: 24 95% 62%;
+    --brand-glow: 24 90% 55%;
+
     --background: 0 0% 100%;
     --foreground: 0 0% 10%;
     --card: 0 0% 100%;
@@ -39,14 +46,23 @@
   body {
     font-family: "Heebo", "Inter", ui-sans-serif, system-ui, sans-serif;
     background-color: #ffffff;
-    color: #1a1a1a;
+    color: #0f172a;
     overflow-x: hidden;
     direction: rtl;
   }
 
   ::selection {
-    background-color: #e07a5f;
+    background-color: hsl(var(--brand-accent));
     color: white;
+  }
+}
+
+@layer components {
+  .hero-backdrop {
+    background:
+      radial-gradient(1200px 600px at 18% 12%, hsl(var(--brand-glow) / 0.22), transparent 55%),
+      radial-gradient(900px 500px at 82% 22%, hsl(var(--brand-accent-bright) / 0.12), transparent 50%),
+      linear-gradient(165deg, hsl(var(--brand-bg-deep)) 0%, hsl(var(--brand-bg-mid)) 48%, hsl(var(--brand-bg-deep)) 100%);
   }
 }
 

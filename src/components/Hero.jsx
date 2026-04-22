@@ -1,5 +1,6 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
+import { GripVertical } from "lucide-react";
 import { siteConfig } from "../config/site";
 import { localeConfig } from "../config/locale";
 
@@ -8,33 +9,43 @@ export default function Hero({ onOpenContact }) {
   const [headlineStart = "", headlineEnd = ""] = brand.heroHeadline.split(
     localeConfig.heroHighlight
   );
-  const [sliderPos, setSliderPos] = useState(50);
+  const [sliderPos, setSliderPos] = useState(52);
   const safeSliderPos = Math.max(sliderPos, 1);
   const containerRef = useRef(null);
-  const isDragging = useRef(false);
+  const draggingRef = useRef(false);
 
-  const handleMove = useCallback(
-    (clientX) => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const x = clientX - rect.left;
-      const pct = (x / rect.width) * 100;
-      setSliderPos(Math.max(0, Math.min(100, pct)));
-    },
-    []
-  );
+  const handleMove = useCallback((clientX) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const fromLeft = ((clientX - rect.left) / rect.width) * 100;
+    const pct = fromLeft;
+    setSliderPos(Math.max(0, Math.min(100, pct)));
+  }, []);
 
-  const handleMouseDown = () => {
-    isDragging.current = true;
-  };
-  const handleMouseUp = () => {
-    isDragging.current = false;
-  };
+  useEffect(() => {
+    const stop = () => {
+      draggingRef.current = false;
+    };
+    window.addEventListener("mouseup", stop);
+    window.addEventListener("touchend", stop);
+    return () => {
+      window.removeEventListener("mouseup", stop);
+      window.removeEventListener("touchend", stop);
+    };
+  }, []);
+
   const handleMouseMove = (e) => {
-    if (isDragging.current) handleMove(e.clientX);
+    if (!draggingRef.current) return;
+    handleMove(e.clientX);
   };
+
   const handleTouchMove = (e) => {
+    if (!draggingRef.current) return;
     handleMove(e.touches[0].clientX);
+  };
+
+  const beginDrag = () => {
+    draggingRef.current = true;
   };
 
   const scrollToPortfolio = () => {
@@ -42,123 +53,140 @@ export default function Hero({ onOpenContact }) {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
+  const accentBtn =
+    "group relative isolate overflow-hidden rounded-full bg-gradient-to-l from-orange-400 via-orange-500 to-orange-600 px-7 py-3.5 font-semibold text-white shadow-[0_18px_55px_-18px_rgba(249,115,22,0.75)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_65px_-18px_rgba(249,115,22,0.85)] active:translate-y-0";
+
+  const ghostBtn =
+    "rounded-full border border-white/25 bg-white/5 px-7 py-3.5 font-semibold text-white backdrop-blur-md transition-all duration-300 hover:border-white/45 hover:bg-white/10 active:scale-[0.98]";
+
   return (
     <section
       id="hero"
-      className="relative min-h-screen bg-[#1A1A1A] overflow-hidden"
+      className="relative min-h-screen overflow-hidden hero-backdrop"
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-6 pt-24 pb-16 min-h-screen flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center w-full">
-          {/* Texto - 40% */}
+      {/* soft vignette */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.06),transparent_62%)]" />
+
+      <div className="relative max-w-7xl mx-auto px-4 md:px-6 pt-24 pb-16 min-h-screen flex items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-10 lg:gap-14 items-center w-full">
+          {/* Copy */}
           <motion.div
-            className="lg:col-span-2 order-2 lg:order-1"
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            className="lg:col-span-2 order-2 lg:order-2 text-right"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.15 }}
           >
-            <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+            <h1 className="text-white text-3xl md:text-4xl lg:text-[2.65rem] font-extrabold leading-[1.12] tracking-tight">
               {headlineStart}
-              <span className="text-[#E07A5F]">{localeConfig.heroHighlight}</span>
+              <span className="bg-gradient-to-l from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent">
+                {localeConfig.heroHighlight}
+              </span>
               {headlineEnd}
             </h1>
-            <p className="mt-6 text-white/60 text-base md:text-lg leading-relaxed">
+            <p className="mt-6 text-white/72 text-base md:text-lg leading-relaxed">
               {brand.heroDescription}
             </p>
 
-            {/* Botones */}
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <button
-                onClick={onOpenContact}
-                className="bg-[#E07A5F] text-white px-6 py-3.5 rounded-lg font-medium hover:bg-[#c96a50] transition-colors text-center"
-              >
-                {localeConfig.buttons.freeConsultation}
+            <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 sm:justify-end">
+              <button type="button" onClick={onOpenContact} className={accentBtn}>
+                <span className="relative z-10">{localeConfig.buttons.freeConsultation}</span>
+                <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_30%_0%,rgba(255,255,255,0.35),transparent_55%)]" />
               </button>
-              <button
-                onClick={scrollToPortfolio}
-                className="border border-white/30 text-white px-6 py-3.5 rounded-lg font-medium hover:border-white/60 transition-colors text-center"
-              >
+              <button type="button" onClick={scrollToPortfolio} className={ghostBtn}>
                 {localeConfig.buttons.seeProjects}
               </button>
             </div>
 
-            {/* Stats */}
-            <div className="mt-10 flex flex-wrap gap-6 md:gap-10">
+            <div className="mt-10 flex flex-wrap gap-6 md:gap-10 justify-end">
               {stats.map((s, i) => (
-                <div key={i}>
-                  <p className="text-[#E07A5F] text-2xl md:text-3xl font-bold">
+                <div key={i} className="text-right min-w-[5.5rem]">
+                  <p className="bg-gradient-to-l from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-2xl md:text-3xl font-bold text-transparent">
                     {s.value}
                   </p>
-                  <p className="text-white/50 text-xs md:text-sm mt-1">
-                    {s.label}
-                  </p>
+                  <p className="text-white/55 text-xs md:text-sm mt-1">{s.label}</p>
                 </div>
               ))}
             </div>
           </motion.div>
 
-          {/* Imagen con slider antes/después - 60% */}
+          {/* Slider */}
           <motion.div
-            className="lg:col-span-3 order-1 lg:order-2"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            className="lg:col-span-4 order-1 lg:order-1"
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.28 }}
           >
+            <p className="mb-4 text-sm md:text-base text-white/75 leading-relaxed text-right">
+              {localeConfig.hero.sliderHint}
+            </p>
+
             <div
               ref={containerRef}
-              className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden cursor-col-resize select-none"
+              className="relative aspect-[16/10] w-full min-h-[min(82vw,620px)] cursor-ew-resize select-none overflow-hidden rounded-3xl ring-1 ring-white/12 shadow-[0_40px_120px_-55px_rgba(0,0,0,0.85)] touch-pan-x md:aspect-[16/9] lg:aspect-[2/1]"
               onMouseMove={handleMouseMove}
-              onMouseUp={handleMouseUp}
-              onMouseLeave={handleMouseUp}
+              onMouseUp={() => {
+                draggingRef.current = false;
+              }}
+              onMouseLeave={() => {
+                draggingRef.current = false;
+              }}
               onTouchMove={handleTouchMove}
-              onTouchEnd={handleMouseUp}
+              onTouchEnd={() => {
+                draggingRef.current = false;
+              }}
             >
-              {/* Imagen "después" (fondo) */}
+              {/* After (background) */}
               <img
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=85&w=1600"
                 alt={localeConfig.hero.afterAlt}
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover scale-[1.02]"
                 draggable={false}
               />
 
-              {/* Imagen "antes" (capa superior, recortada) */}
+              {/* Before (clipped) */}
               <div
-                className="absolute inset-0 overflow-hidden"
+                className="absolute inset-y-0 left-0 overflow-hidden"
                 style={{ width: `${safeSliderPos}%` }}
               >
                 <img
-                  src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1200"
+                  src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=85&w=1600"
                   alt={localeConfig.hero.beforeAlt}
                   className="absolute inset-0 h-full object-cover max-w-none"
                   style={{ width: `${(100 / safeSliderPos) * 100}%` }}
                   draggable={false}
                 />
-                {/* Overlay sepia para "antes" */}
-                <div className="absolute inset-0 bg-amber-900/20" />
+                <div className="absolute inset-0 bg-amber-900/18" />
               </div>
 
-              {/* Línea del slider */}
+              {/* Divider + handle */}
               <div
-                className="absolute top-0 bottom-0 w-1 bg-white shadow-lg z-10"
+                className="absolute top-0 bottom-0 z-20 w-[3px] bg-gradient-to-b from-white/15 via-white to-white/15 shadow-[0_0_0_1px_rgba(255,255,255,0.35)]"
                 style={{ left: `${safeSliderPos}%`, transform: "translateX(-50%)" }}
               >
-                {/* Handle */}
-                <div
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-xl flex items-center justify-center"
-                  onMouseDown={handleMouseDown}
-                  onTouchStart={handleMouseDown}
+                <button
+                  type="button"
+                  aria-label="הזזת מחוון לפני/אחרי"
+                  className="absolute top-1/2 left-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-slate-900 shadow-[0_18px_55px_-18px_rgba(0,0,0,0.65)] ring-4 ring-orange-400/35 transition-transform duration-200 hover:scale-105 active:scale-95"
+                  onMouseDown={beginDrag}
+                  onTouchStart={beginDrag}
                 >
-                  <div className="flex gap-0.5">
-                    <div className="w-0.5 h-4 bg-gray-400" />
-                    <div className="w-0.5 h-4 bg-gray-400" />
-                  </div>
-                </div>
+                  <GripVertical className="h-6 w-6 opacity-80" />
+                </button>
               </div>
 
-              {/* Labels */}
-              <span className="absolute top-4 right-4 bg-black/60 text-white text-xs px-3 py-1 rounded-full z-10">
+              {/* Edge cues */}
+              <div className="pointer-events-none absolute bottom-4 left-4 z-10 rounded-full bg-black/55 px-3 py-1.5 text-[11px] font-semibold text-white/92 backdrop-blur-md">
+                {localeConfig.hero.sliderCueBefore}
+              </div>
+              <div className="pointer-events-none absolute bottom-4 right-4 z-10 rounded-full bg-black/55 px-3 py-1.5 text-[11px] font-semibold text-white/92 backdrop-blur-md">
+                {localeConfig.hero.sliderCueAfter}
+              </div>
+
+              {/* Top chips */}
+              <span className="absolute top-4 left-4 z-10 rounded-full bg-black/55 px-3 py-1 text-[11px] font-semibold text-white backdrop-blur-md">
                 {localeConfig.hero.beforeLabel}
               </span>
-              <span className="absolute top-4 left-4 bg-[#E07A5F]/90 text-white text-xs px-3 py-1 rounded-full z-10">
+              <span className="absolute top-4 right-4 z-10 rounded-full bg-gradient-to-l from-orange-500 to-orange-600 px-3 py-1 text-[11px] font-semibold text-white shadow-lg">
                 {localeConfig.hero.afterLabel}
               </span>
             </div>

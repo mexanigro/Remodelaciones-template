@@ -10,7 +10,7 @@ export default function FloatingCTA({ onOpenContact }) {
       {/* Mobile: floating button bottom-right */}
       <motion.button
         onClick={onOpenContact}
-        className="fixed bottom-6 z-40 md:hidden bg-[#E07A5F] text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center"
+        className="fixed bottom-6 z-40 md:hidden flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-l from-orange-400 via-orange-500 to-orange-600 text-white shadow-[0_22px_65px_-28px_rgba(249,115,22,0.85)] ring-4 ring-orange-400/25"
         style={isRtl ? { left: "1.5rem" } : { right: "1.5rem" }}
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
@@ -23,23 +23,23 @@ export default function FloatingCTA({ onOpenContact }) {
 
       {/* Desktop: sticky banner bottom */}
       <motion.div
-        className="hidden md:block fixed bottom-0 left-0 right-0 z-40 bg-white border-t shadow-[0_-4px_20px_rgba(0,0,0,0.08)]"
+        className="hidden md:block fixed bottom-0 left-0 right-0 z-40 border-t border-black/5 bg-white/85 backdrop-blur-xl shadow-[0_-22px_70px_-52px_rgba(15,23,42,0.35)]"
         initial={{ y: 100 }}
         animate={{ y: 0 }}
         transition={{ delay: 2, duration: 0.5 }}
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div>
-            <p className="text-[#1A1A1A] font-semibold text-sm">
+            <p className="text-slate-900 font-semibold text-sm">
               {localeConfig.floatingCta.title}
             </p>
-            <p className="text-[#6B7280] text-xs mt-0.5">
+            <p className="text-slate-600 text-xs mt-0.5">
               {localeConfig.floatingCta.subtitle}
             </p>
           </div>
           <button
             onClick={onOpenContact}
-            className="bg-[#E07A5F] text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-[#c96a50] transition-colors flex-shrink-0"
+            className="flex-shrink-0 rounded-full bg-gradient-to-l from-orange-400 via-orange-500 to-orange-600 px-6 py-2.5 text-sm font-semibold text-white shadow-[0_18px_45px_-22px_rgba(249,115,22,0.65)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_55px_-22px_rgba(249,115,22,0.78)] active:translate-y-0"
           >
             {localeConfig.buttons.contactNow}
           </button>

@@ -19,6 +19,10 @@ export const localeConfig = {
     afterLabel: "אחרי",
     beforeAlt: "לפני השיפוץ - חלל בתהליך עבודה",
     afterAlt: "אחרי השיפוץ - עסק מוכן לפעילות",
+    sliderHint:
+      "גררו את המחוון כדי להשוות: בצד שמאל מוצג ״לפני״, בצד ימין מוצג ״אחרי״.",
+    sliderCueBefore: "שמאל · לפני",
+    sliderCueAfter: "ימין · אחרי",
   },
   portfolio: {
     title: "פרויקטים שמדברים בעד עצמם",

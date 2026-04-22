@@ -12,14 +12,15 @@ export default function Footer() {
   };
 
   return (
-    <footer id="contact" className="bg-[#1A1A1A] text-white py-16 md:py-20">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
+    <footer id="contact" className="relative overflow-hidden py-16 text-white hero-backdrop md:py-20">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.055),transparent_62%)]" />
+      <div className="relative max-w-7xl mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
           {/* Brand */}
           <div>
             <h3 className="text-xl font-bold tracking-wider">
               {brand.shortName}
-              <span className="text-[#E07A5F]">
+              <span className="bg-gradient-to-l from-orange-300 to-orange-600 bg-clip-text text-transparent">
                 {brand.name.replace(`${brand.shortName} `, "")}
               </span>
             </h3>
@@ -29,19 +30,19 @@ export default function Footer() {
             <div className="flex gap-4 mt-5">
               <a
                 href={brand.instagram}
-                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#E07A5F] transition-colors"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-orange-500/90"
               >
                 <Instagram className="w-4 h-4" />
               </a>
               <a
                 href={brand.facebook}
-                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#E07A5F] transition-colors"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-orange-500/90"
               >
                 <Facebook className="w-4 h-4" />
               </a>
               <a
                 href={brand.twitter}
-                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#E07A5F] transition-colors"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-orange-500/90"
               >
                 <Twitter className="w-4 h-4" />
               </a>
@@ -62,7 +63,7 @@ export default function Footer() {
                     e.preventDefault();
                     scrollTo(link.href);
                   }}
-                  className="text-white/60 text-sm hover:text-[#E07A5F] transition-colors"
+                  className="text-white/65 text-sm transition-colors hover:text-orange-300"
                 >
                   {link.label}
                 </a>
@@ -77,15 +78,15 @@ export default function Footer() {
             </h4>
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-white/60 text-sm">
-                <MapPin className="w-4 h-4 text-[#E07A5F] flex-shrink-0" />
+                <MapPin className="h-4 w-4 flex-shrink-0 text-orange-400" />
                 <span>{brand.address}</span>
               </div>
               <div className="flex items-center gap-3 text-white/60 text-sm">
-                <Phone className="w-4 h-4 text-[#E07A5F] flex-shrink-0" />
+                <Phone className="h-4 w-4 flex-shrink-0 text-orange-400" />
                 <span>{brand.phone}</span>
               </div>
               <div className="flex items-center gap-3 text-white/60 text-sm">
-                <Mail className="w-4 h-4 text-[#E07A5F] flex-shrink-0" />
+                <Mail className="h-4 w-4 flex-shrink-0 text-orange-400" />
                 <span>{brand.email}</span>
               </div>
             </div>

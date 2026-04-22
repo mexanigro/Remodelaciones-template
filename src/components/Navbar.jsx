@@ -26,7 +26,7 @@ export default function Navbar({ onOpenContact, splashDone }) {
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-md"
+          ? "border-b border-black/5 bg-white/82 backdrop-blur-xl shadow-[0_18px_55px_-44px_rgba(15,23,42,0.35)]"
           : "bg-transparent"
       }`}
       initial={{ opacity: 0, y: -20 }}
@@ -42,11 +42,11 @@ export default function Navbar({ onOpenContact, splashDone }) {
             scrollTo("#hero");
           }}
           className={`font-bold text-lg tracking-wider ${
-            scrolled ? "text-[#1A1A1A]" : "text-white"
+            scrolled ? "text-slate-900" : "text-white"
           }`}
         >
           {brand.shortName}
-          <span className="text-[#E07A5F]">
+          <span className="bg-gradient-to-l from-orange-400 to-orange-600 bg-clip-text text-transparent">
             {brand.name.replace(`${brand.shortName} `, "")}
           </span>
         </a>
@@ -61,8 +61,8 @@ export default function Navbar({ onOpenContact, splashDone }) {
                 e.preventDefault();
                 scrollTo(link.href);
               }}
-              className={`text-sm tracking-wide transition-colors hover:text-[#E07A5F] ${
-                scrolled ? "text-[#6B7280]" : "text-white/80"
+              className={`text-sm tracking-wide transition-colors hover:text-orange-500 ${
+                scrolled ? "text-slate-600" : "text-white/82"
               }`}
             >
               {link.label}
@@ -70,7 +70,7 @@ export default function Navbar({ onOpenContact, splashDone }) {
           ))}
           <button
             onClick={onOpenContact}
-            className="bg-[#E07A5F] text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-[#c96a50] transition-colors"
+            className="rounded-full bg-gradient-to-l from-orange-400 via-orange-500 to-orange-600 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_18px_45px_-22px_rgba(249,115,22,0.65)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_55px_-22px_rgba(249,115,22,0.75)] active:translate-y-0"
           >
             {localeConfig.buttons.freeConsultation}
           </button>
@@ -79,7 +79,7 @@ export default function Navbar({ onOpenContact, splashDone }) {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className={`lg:hidden ${scrolled ? "text-[#1A1A1A]" : "text-white"}`}
+          className={`lg:hidden ${scrolled ? "text-slate-900" : "text-white"}`}
         >
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -101,7 +101,7 @@ export default function Navbar({ onOpenContact, splashDone }) {
                   e.preventDefault();
                   scrollTo(link.href);
                 }}
-                className="text-[#1A1A1A] text-sm py-2 border-b border-gray-100"
+                className="text-slate-900 text-sm py-2 border-b border-gray-100"
               >
                 {link.label}
               </a>
@@ -111,7 +111,7 @@ export default function Navbar({ onOpenContact, splashDone }) {
                 setMobileOpen(false);
                 onOpenContact();
               }}
-              className="bg-[#E07A5F] text-white px-5 py-3 rounded-lg text-sm font-medium mt-2"
+              className="mt-2 rounded-full bg-gradient-to-l from-orange-400 via-orange-500 to-orange-600 px-5 py-3 text-sm font-semibold text-white shadow-[0_18px_45px_-22px_rgba(249,115,22,0.65)]"
             >
               {localeConfig.buttons.freeConsultation}
             </button>
