@@ -8,6 +8,7 @@ export default function Hero({ onOpenContact }) {
     "creamos tu apertura"
   );
   const [sliderPos, setSliderPos] = useState(50);
+  const safeSliderPos = Math.max(sliderPos, 1);
   const containerRef = useRef(null);
   const isDragging = useRef(false);
 
@@ -121,13 +122,13 @@ export default function Hero({ onOpenContact }) {
               {/* Imagen "antes" (capa superior, recortada) */}
               <div
                 className="absolute inset-0 overflow-hidden"
-                style={{ width: `${sliderPos}%` }}
+                style={{ width: `${safeSliderPos}%` }}
               >
                 <img
                   src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1200"
                   alt="Antes - Obra en construcción"
                   className="absolute inset-0 h-full object-cover max-w-none"
-                  style={{ width: `${(100 / sliderPos) * 100}%` }}
+                  style={{ width: `${(100 / safeSliderPos) * 100}%` }}
                   draggable={false}
                 />
                 {/* Overlay sepia para "antes" */}
@@ -137,7 +138,7 @@ export default function Hero({ onOpenContact }) {
               {/* Línea del slider */}
               <div
                 className="absolute top-0 bottom-0 w-1 bg-white shadow-lg z-10"
-                style={{ left: `${sliderPos}%`, transform: "translateX(-50%)" }}
+                style={{ left: `${safeSliderPos}%`, transform: "translateX(-50%)" }}
               >
                 {/* Handle */}
                 <div
