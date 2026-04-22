@@ -7,6 +7,7 @@ import Process from "./components/Process";
 import WhyUs from "./components/WhyUs";
 import Testimonials from "./components/Testimonials";
 import FloatingCTA from "./components/FloatingCTA";
+import ScrollToTop from "./components/ScrollToTop";
 import Footer from "./components/Footer";
 import ContactModal from "./components/ContactModal";
 import "./App.css";
@@ -30,6 +31,7 @@ function App() {
         <Testimonials />
       </main>
       <Footer />
+      <ScrollToTop />
       <FloatingCTA onOpenContact={() => setContactOpen(true)} />
       <ContactModal isOpen={contactOpen} onClose={() => setContactOpen(false)} />
     </>

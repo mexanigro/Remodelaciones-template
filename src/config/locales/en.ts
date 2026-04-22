@@ -92,5 +92,6 @@ export const messagesEn = {
     openMenu: "Open navigation menu",
     closeMenu: "Close navigation menu",
     sliderThumb: "Before and after comparison slider",
+    scrollToTop: "Back to top",
   },
 } as const;

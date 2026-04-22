@@ -92,5 +92,6 @@ export const messagesHe = {
     openMenu: "פתח תפריט ניווט",
     closeMenu: "סגור תפריט ניווט",
     sliderThumb: "מחוון השוואה לפני ואחרי",
+    scrollToTop: "חזרה לראש העמוד",
   },
 } as const;
